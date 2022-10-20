@@ -21,7 +21,7 @@ struct EndpointList{
 struct Link {
     private static let language = "&language=\(Locale.current.languageCode!)"
     private static let base = "https://api.themoviedb.org/"
-    private static let api = "?api_key=0c8be20e0f5be9d2bd79558265fc47c0"
+    private static let api = // apiKey should be included!
     static let poster = "https://image.tmdb.org/t/p/w500"
     private static let endpoints = EndpointList.self
     

@@ -1,0 +1,57 @@
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "04f-eQ-0sQ"; */
+"04f-eQ-0sQ.text" = "Label";
+
+/* Class = "UILabel"; text = " "; ObjectID = "1pK-iw-5v2"; */
+"1pK-iw-5v2.text" = " ";
+
+/* Class = "UITabBarItem"; title = "Favorite List"; ObjectID = "2wi-Nn-NSV"; */
+"2wi-Nn-NSV.title" = "Favorite List";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "3zX-h7-a9n"; */
+"3zX-h7-a9n.text" = "Label";
+
+/* Class = "UIViewController"; title = "Favorite List"; ObjectID = "6iy-i0-9Ot"; */
+"6iy-i0-9Ot.title" = "Favorite List";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "9CU-5c-iAC"; */
+"9CU-5c-iAC.text" = "Label";
+
+/* Class = "UILabel"; text = " "; ObjectID = "9xT-ad-WuF"; */
+"9xT-ad-WuF.text" = " ";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "DgZ-xP-sol"; */
+"DgZ-xP-sol.text" = "Label";
+
+/* Class = "UITabBarItem"; title = "Item 1"; ObjectID = "FeS-e7-dHh"; */
+"FeS-e7-dHh.title" = "Item 1";
+
+/* Class = "UILabel"; text = " "; ObjectID = "QxR-OT-OST"; */
+"QxR-OT-OST.text" = " ";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "aj6-Ct-7mB"; */
+"aj6-Ct-7mB.text" = "Label";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "eCD-eb-hDC"; */
+"eCD-eb-hDC.text" = "Label";
+
+/* Class = "UILabel"; text = " "; ObjectID = "gph-Id-M46"; */
+"gph-Id-M46.text" = " ";
+
+/* Class = "UITabBarItem"; title = "Movie List"; ObjectID = "jAn-Zm-0hd"; */
+"jAn-Zm-0hd.title" = "Movie List";
+
+/* Class = "UITabBarItem"; title = "Search"; ObjectID = "kxH-Mr-In0"; */
+"kxH-Mr-In0.title" = "Search";
+
+/* Class = "UIButton"; configuration.title = " "; ObjectID = "nCp-Su-D1k"; */
+"nCp-Su-D1k.configuration.title" = " ";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "nCp-Su-D1k"; */
+"nCp-Su-D1k.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "qAW-RV-2G4"; */
+"qAW-RV-2G4.text" = "Label";
+
+/* Class = "UILabel"; text = " "; ObjectID = "xdX-Lv-tug"; */
+"xdX-Lv-tug.text" = " ";

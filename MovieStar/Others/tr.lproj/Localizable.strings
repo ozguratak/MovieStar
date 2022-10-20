@@ -1,0 +1,50 @@
+/* 
+  Localizable.strings
+  MovieStar
+
+  Created by obss on 4.07.2022.
+  
+*/
+
+"Error" = "Hata!";
+"OK" = "Tamam";
+"Search" = "Ara";
+"Information Message" = "Bilgilendirme Mesajı";
+"Homepage has not found!" = "İçerik için websitesi bulunamadı!";
+"Your favorite list is empty, you can add your new movies from the detail page. For adding new movies just hit the heart icon!" = "Favori listenizde henüz içerik bulunmuyor. Listeye içerik eklemek için lütfen eklemek istediğiniz içeriğin detay sayfasında bulunan kalp simgesine dokunun.";
+"Pull to refresh" = "Güncellemek için aşağı kaydırın";
+"Please touch the search area for searching movies..." = "Arama yapmak için lütfen arama çubuğunu kullanın...";
+"Movie details has not found!" = "Film detayı bulunamadı!";
+"Movie has not found!" = "İçerik bulunamadı!";
+"Overview:" = "Film Özeti:";
+"Overview has not found." = "Film özeti bulunamadı.";
+"Original Lang: " = "Orjinal dil: ";
+"Unknown language." = "Orijinal dil bulunamadı.";
+"Original Title: " = "Orijinal ismi: ";
+"Unknown title." = "Orijinal ismi bulunamadı.";
+"Release Date: " = "Vizyon tarihi: ";
+"Release date has not founded." = "Vizyon tarihi bilgisi bulunmuyor.";
+"Budget: " = "Yapım maliyeti: ";
+"Unkown budget!" = "Yapım maliyeti bilgisi bulunamadı.";
+"Revenue: " = "Kazanç: ";
+"Unknown revenue!" = "Kazanç bilgisi bulunamıyor.";
+"Runtime: " = "Süre: ";
+" min" = " dk";
+"Unknown runtime!" = "Süre bilgisi bulunamadı.";
+"Unknown movie name!" = "Bilinmeyen Film.";
+"Unknown movie release date!" = "Bilinmeyen vizyon tarihi.";
+"Movie has already added the favorite list. If you want to remove the movie please touch the Remove! button" = "Film zaten favori listesine eklenmiş. Bu filmi favori listenizden kaldırmak için Kaldır! butonuna dokunun.";
+"Remove!" = "Kaldır!";
+"Movie can not added to favorite list!" = "Film favorilere eklenemedi!";
+"Person has not found!" = "Aktör bulunamadı!";
+"Not ranked yet!" = "Henüz puanlanmamış!";
+"Unknown value" = "Değer bilinmiyor";
+"Birthday: " = "Doğumgünü: ";
+"Deathday: " = "Ölüm: ";
+"Place of birth: " = "Doğum yeri: ";
+"Biography: " = "Biyografi: ";
+"Content has not found!" = "İçerik bulunamadı!";
+"There is no content suitable for the language option used." = "Kullanılan dil seçeneğine ilişkin bir içerik bulunamadı.";
+
+
+

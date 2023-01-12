@@ -8,7 +8,6 @@
 
 import UIKit
 import Kingfisher
-import SwiftUI
 
 class PersonDetailViewController: UIViewController {
     @IBOutlet weak var personImage: UIImageView! {
@@ -58,13 +57,13 @@ class PersonDetailViewController: UIViewController {
         if let birthDay = person?.birthday{
             birthday.text = StringKey.birthday + birthDay
         } else {
-            birthday.text = StringKey.unValue
+            birthday.text = StringKey.birthday + StringKey.unDated
         }
         
         if let deathDay = person?.deathday {
             deathday.text = StringKey.deathday + deathDay
         } else {
-            deathday.text = ""
+            deathday.text = StringKey.deathday + StringKey.unDated
         }
         
         if let biograph = person?.biography {
@@ -80,12 +79,12 @@ class PersonDetailViewController: UIViewController {
         if let pOB = person?.place_of_birth {
             placeofBirthLabel.text = StringKey.placeOfBirth + pOB
         } else {
-            placeofBirthLabel.text = StringKey.unValue
+            placeofBirthLabel.text = StringKey.placeOfBirth + StringKey.unValue
         }
         if let personName = person?.name {
             personalNameLabel.text = personName
         } else {
-            personalNameLabel.text = StringKey.unName
+            personalNameLabel.text = StringKey.unName + StringKey.unValue
         }
     }
 }

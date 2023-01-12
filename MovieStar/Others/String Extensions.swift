@@ -9,6 +9,7 @@ import Foundation
 import UIKit
 
 extension String{
+    
     var urlEncoded: String? {
         let allowedCharacterSet = CharacterSet.alphanumerics.union(CharacterSet(charactersIn: "~-_."))
         return self.addingPercentEncoding(withAllowedCharacters: allowedCharacterSet)
@@ -26,7 +27,8 @@ extension String{
         return NSLocalizedString(self, tableName: "Localizable", bundle: .main, value: self, comment: self)
     }
     
-
+   
+    
     func withBoldText(text: String, font: UIFont? = nil) -> NSAttributedString {
       let _font = font ?? UIFont.systemFont(ofSize: 14, weight: .regular)
       let fullString = NSMutableAttributedString(string: self, attributes: [NSAttributedString.Key.font: _font])

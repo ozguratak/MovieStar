@@ -7,6 +7,7 @@
 
 import Foundation
 struct StringKey{
+    static let notFound = "Not found any content for: ".localized()
     static let infoTitle = "Movie Information".localized()
     static let prodTitle = "Production Companies".localized()
     static let castTitle = "Cast".localized()
@@ -48,6 +49,7 @@ struct StringKey{
     static let noPerson = "Person has not found!".localized()
     static let notRanked = "Not ranked yet!".localized()
     static let unValue = "Unknown value".localized()
+    static let unDated = "Unknown date".localized()
     static let birthday = "Birthday: ".localized()
     static let deathday = "Deathday: ".localized()
     static let placeOfBirth = "Place of birth: ".localized()

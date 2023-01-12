@@ -32,9 +32,8 @@ class SearchViewController: UIViewController {
                            forCellReuseIdentifier: String(describing: MovieViewCell.self)) //benim tanımaldığım hücre yapısını register et.
         searchBar.delegate = self
         Skeleton.hideMessage(parentView: tableView, childView: messageLabel, state: true)
+        hideKeyboardWhenTappedAround()
     }
-    
-    
 }
 
 //MARK: - Tableview configurations
@@ -62,16 +61,26 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource{
             }
         }
     }
+
 }
 
 //MARK: -Listing Functions
 extension SearchViewController {
+    func replaceSpaces(string: String) -> String {
+        return string.replacingOccurrences(of: " ", with: "%20")
+    }
+    
     func searchItem(text: String) {
         listingService.getSearchResults(search: text) { result in
             switch result {
             case .success(let response):
                 self.searchResults = response.results ?? []
-                self.tableView.reloadData()
+                if self.searchResults.count >= 1 {
+                    self.tableView.reloadData()
+                } else {
+                    ErrorController.alert(alertInfo: "\(StringKey.notFound) \(text)" , page: self)
+                }
+                
                 if self.searchResults.count > 0 {
                 Skeleton.stopAnimaton(outlet: self.tableView)
                 }
@@ -85,9 +94,11 @@ extension SearchViewController {
 extension SearchViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         searchBar.showsCancelButton = true
-        if searchBar.text?.isEmpty == true || searchBar.text == " " {
+        if searchBar.text?.isEmpty == true || searchBar.text == "" {
             searchResults.removeAll()
-            tableView.reloadData()
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
             Skeleton.hideMessage(parentView: tableView, childView: messageLabel, state: true)
         }
         
@@ -98,7 +109,7 @@ extension SearchViewController: UISearchBarDelegate {
         if searchText.count >= 1{
             Skeleton.hideMessage(parentView: tableView, childView: messageLabel, state: false)
             Skeleton.startAnimation(outlet: tableView)
-            self.searchItem(text: correctedText)
+            searchItem(text: replaceSpaces(string: correctedText))
         } else {
             Skeleton.stopAnimaton(outlet: tableView)
         }

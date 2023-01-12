@@ -19,7 +19,8 @@
 "French" = "Fransızca";
 "Spanish" = "İspanyolca";
 "Italian" = "İtalyanca";
-
+"Not found any content for: " = "Arama sonucu bulunamadı. Arama kelimesi: ";
+"Unknown date" = "Tarih bilinmiyor";
 "Genres" = "Kategoriler";
 "Recommended Movies" = "Öneriler";
 "Cast" = "Oyuncular";
@@ -43,7 +44,7 @@
 "Original Lang: " = "Orjinal dil: ";
 "Unknown language." = "Orijinal dil bulunamadı.";
 "Original Title: " = "Orijinal ismi: ";
-"Unknown title." = "Orijinal ismi bulunamadı.";
+"Unknown title." = "Orijinal isim bulunamadı.";
 "Release Date: " = "Vizyon tarihi: ";
 "Release date has not founded." = "Vizyon tarihi bilgisi bulunmuyor.";
 "Budget: " = "Yapım maliyeti: ";
@@ -61,8 +62,8 @@
 "Person has not found!" = "Aktör bulunamadı!";
 "Not ranked yet!" = "Henüz puanlanmamış!";
 "Unknown value" = "Değer bilinmiyor";
-"Birthday: " = "Doğumgünü: ";
-"Deathday: " = "Ölüm: ";
+"Birthday: " = "Doğum günü: ";
+"Deathday: " = "Ölüm tarihi: ";
 "Place of birth: " = "Doğum yeri: ";
 "Biography: " = "Biyografi: ";
 "Content has not found!" = "İçerik bulunamadı!";

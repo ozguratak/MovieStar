@@ -23,11 +23,10 @@ struct EndpointList{
 struct Link {
     private static let language = "&language=\(Locale.current.languageCode!)"
     private static let base = "https://api.themoviedb.org/"
-    private static let api = //Api key entrence
+    private static let api = "?api_key=0c8be20e0f5be9d2bd79558265fc47c0"
     static let poster = "https://image.tmdb.org/t/p/w500"
     private static let endpoints = EndpointList.self
     
-//https://api.themoviedb.org/3/discover/movie?api_key=0c8be20e0f5be9d2bd79558265fc47c0&with_genres=Action
     
     static func endpointMaker(endpoint: Endpoints, movieID: Int?, page: Int?, search: String?, idOfPerson: Int?) -> URL? {
         var makedURL: URL? = URL(string: "")

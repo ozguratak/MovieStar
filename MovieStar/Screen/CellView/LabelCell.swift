@@ -8,6 +8,12 @@
 import UIKit
 
 class LabelCell: UICollectionViewCell {
+    @IBOutlet weak var view: UIView!{
+        didSet{
+            view.layer.cornerRadius = 6
+        }
+    }
+    
     @IBOutlet weak var textLabel: UILabel!
     func configureGenres(model: GenresModel) {
         textLabel.text = model.name

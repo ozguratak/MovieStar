@@ -85,6 +85,7 @@ extension DatabaseManager {
             reload(IDs: integerID)
         }
     }
+    
     func reload(IDs: Int){
         listingService.getMovie(idOfMovie: IDs) { result in
             switch result {

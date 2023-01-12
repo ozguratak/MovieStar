@@ -8,14 +8,20 @@
 import UIKit
 
 class CastCell: UICollectionViewCell {
+    @IBOutlet weak var view: UIView!{
+        didSet{
+            view.backgroundColor = .darkGray
+            view.layer.cornerRadius = 8
+        }
+    }
     @IBOutlet weak var personImage: UIImageView! {
         didSet{
             personImage.layer.cornerRadius = 20
         }
     }
-    @IBOutlet weak var personName: UILabel! {
+    @IBOutlet weak var personName: UILabel!{
         didSet{
-            personName.layer.backgroundColor = .init(red: 222.0, green: 223.0, blue: 249.0, alpha: 0.5)
+            personName.backgroundColor = .amethyst
         }
     }
     

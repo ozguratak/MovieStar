@@ -7,7 +7,6 @@ target 'MovieStar' do
   use_frameworks!
 
   # Pods for MovieStar
- pod 'Kingfisher', '~> 7.0'
  pod 'RealmSwift'
  pod 'SkeletonView'
  

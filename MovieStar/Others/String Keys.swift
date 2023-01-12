@@ -7,6 +7,14 @@
 
 import Foundation
 struct StringKey{
+    static let infoTitle = "Movie Information".localized()
+    static let prodTitle = "Production Companies".localized()
+    static let castTitle = "Cast".localized()
+    static let recomTitle = "Recommended Movies".localized()
+    static let genreTitle = "Genres".localized()
+    static let listPageHeader = "Movie List".localized()
+    static let searchPageHeader = "Search".localized()
+    static let favoritesPageHeader = "Favorites".localized()
     static let error = "Error".localized()
     static let ok = "OK".localized()
     static let search = "Search".localized()
@@ -46,8 +54,4 @@ struct StringKey{
     static let bio = "Biography: ".localized()
     static let emptyContent = "Content has not found!".localized()
     static let translateError = "There is no content suitable for the language option used.".localized()
-
-
-
-
 }

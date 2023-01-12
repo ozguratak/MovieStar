@@ -70,6 +70,40 @@ class MovieDetailViewController: UIViewController {
         }
     }
     @IBOutlet var collectionOfView: Array<UIView> = []
+    
+    @IBOutlet weak var prodCompTitle: UILabel!{
+        didSet{
+            
+            prodCompTitle.text = StringKey.prodTitle
+           
+        }
+    }
+    @IBOutlet weak var genresTitle: UILabel!{
+        didSet{
+            genresTitle.text = StringKey.genreTitle
+  
+        }
+    }
+    @IBOutlet weak var infoTitle: UILabel!{
+        didSet{
+            infoTitle.text = StringKey.infoTitle
+        }
+    }
+    @IBOutlet weak var castTitle: UILabel!{
+        didSet{
+            
+            castTitle.text = StringKey.castTitle
+         
+        }
+    }
+    @IBOutlet weak var recomTitle: UILabel!{
+        didSet{
+            
+            recomTitle.text = StringKey.recomTitle
+          
+        }
+    }
+    private let label = UILabel()
     private let dbmanager = DatabaseManager.shared
     private let error = ErrorController.self
     private let listingService = ListingServices()
@@ -81,7 +115,7 @@ class MovieDetailViewController: UIViewController {
     private var favMovie: FavoritedMovie?
     private var movie: MovieDetailModel? {
         didSet {
-            updateUI()
+           
             title = movie?.title
         }
     }
@@ -101,6 +135,7 @@ class MovieDetailViewController: UIViewController {
                     self.prodList = newMovie.production_companies ?? []
                     self.prodCompCollectionView.reloadData()
                     Skeleton.stopAnimationArray(outlets: self.collectionOfView)
+                    self.updateUI()
                 case .failure(let error):
                     print(error)
                 }
@@ -130,10 +165,12 @@ class MovieDetailViewController: UIViewController {
             error.alert(alertInfo: StringKey.noMovie, page: self)
         }
         //sayfa içerikleri skeleton başlat
+        
         Skeleton.startAnimationArray(outlets: collectionOfView)
+       
     }
     
-    
+ 
 
     //MARK: - Film detayı içeriği setleme, içeriklerin optionaldan çıkartılması hata fırlatma
     func updateUI() {
@@ -145,25 +182,42 @@ class MovieDetailViewController: UIViewController {
         }
         
         if let overView = movie?.overview {
-            overview.text = StringKey.overview + " \(overView)"
+            if !overView.isEmpty {
+                overview.text = "\(StringKey.overview) \(overView)"
+                
+            } else {
+                overview.text = StringKey.noOverview
+            }
         } else {
-            return overview.text = StringKey.noOverview
+            return overview.text! = StringKey.noOverview
         }
         
         if let orgLang = movie?.original_language {
-            OrgLanguage.text = StringKey.orgLang + "\(orgLang)"
+            if !orgLang.isEmpty{
+                OrgLanguage.text = StringKey.orgLang + getLanguage(code: orgLang)
+            } else {
+                OrgLanguage.text = StringKey.unLanguage
+            }
         } else {
             return OrgLanguage.text = StringKey.unLanguage
         }
         
         if let orgTitle = movie?.original_title {    //switch case e girecek
-            originalTitleLanguage.text = StringKey.orgTitle + "\(orgTitle)"
+            if !orgTitle.isEmpty{
+                originalTitleLanguage.text = StringKey.orgTitle + "\(orgTitle)"
+            } else {
+                originalTitleLanguage.text = StringKey.unTitle
+            }
         }else{
             return originalTitleLanguage.text = StringKey.unTitle
         }
         
         if let release = movie?.release_date {
-            releaseDateRuntime.text = StringKey.releaseDate + "\(release)"
+            if !release.isEmpty{
+                releaseDateRuntime.text = StringKey.releaseDate + "\(release)"
+            } else {
+                releaseDateRuntime.text = StringKey.unRelease
+            }
         } else {
             return releaseDateRuntime.text = StringKey.unRelease
         }
@@ -171,7 +225,11 @@ class MovieDetailViewController: UIViewController {
         if let budget = movie?.budget {
             if budget >= (1) {
                 let curRency = String(describing: budget).toCurrencyFormat()
-                budgetRevenue.text = StringKey.budget  + "\(curRency)"
+                if !curRency.isEmpty {
+                    budgetRevenue.text = StringKey.budget  + "\(curRency)"
+                } else {
+                    budgetRevenue.text = StringKey.budget + StringKey.unValue
+                }
             } else {
                 budgetRevenue.text = StringKey.budget + StringKey.unValue
             }
@@ -182,7 +240,11 @@ class MovieDetailViewController: UIViewController {
         if let revEnue = movie?.revenue {
             if revEnue > 0 {
                 let currency = String(describing: revEnue).toCurrencyFormat()
-                revenue.text = StringKey.revenue + "\(currency)"
+                if !currency.isEmpty{
+                    revenue.text = StringKey.revenue + "\(currency)"
+                } else {
+                    revenue.text = StringKey.revenue + StringKey.unValue
+                }
             } else {
                 revenue.text = StringKey.revenue + StringKey.unValue
             }
@@ -192,7 +254,12 @@ class MovieDetailViewController: UIViewController {
         }
         
         if let runTime = movie?.runtime {
-            runtime.text = StringKey.runtime + "\(runTime)" + StringKey.minute
+            if !runTime.words.isEmpty {
+                runtime.text = StringKey.runtime + "\(runTime)" + StringKey.minute
+            } else {
+                runtime.text = StringKey.unRuntime
+            }
+
         } else {
             return runtime.text = StringKey.unRuntime
         }
@@ -294,6 +361,11 @@ extension MovieDetailViewController: UICollectionViewDelegateFlowLayout, UIColle
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         switch collectionView{
+        case self.genresCollectionView:
+            if let detailVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: String(describing: GenreListViewController.self)) as? GenreListViewController {
+                detailVC.genre = genresList[indexPath.row].name ?? ""
+                self.navigationController?.pushViewController(detailVC, animated: true)
+            }
         case self.castCollectionView:
             if let detailVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(
                 withIdentifier: String(describing: PersonDetailViewController.self)) as? PersonDetailViewController {
@@ -310,30 +382,5 @@ extension MovieDetailViewController: UICollectionViewDelegateFlowLayout, UIColle
             return
         }
     }
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//        switch collectionView {
-//        case self.castCollectionView:
-//            print("BURADA: \(CGSize(width: (view.frame.size.width/3)-3, height:(view.frame.size.width/3)-1))")
-//            return CGSize(width: (view.frame.size.width/3)-3, height:(view.frame.size.width/3)-1)
-//        case self.recomCollectionView:
-//            return CGSize(width: (view.frame.size.width/3)-1, height:(view.frame.size.width/3)-1)
-//        case self.genresCollectionView:
-//            return CGSize(width: 94, height: 34)
-//        case self.prodCompCollectionView:
-//            return CGSize(width: 94, height: 34)
-//        default:
-//            return CGSize(width: 0, height: 0)
-//        }
-//    }
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-//        return 8
-//        
-//    }
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-//        return 8
-//    }
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-//        return UIEdgeInsets(top: 4, left: 0, bottom: 4, right: 8)
-//    }
 }
 

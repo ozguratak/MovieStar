@@ -25,7 +25,7 @@ class SearchViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = StringKey.search
+        title = StringKey.searchPageHeader
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(UINib(nibName: String(describing: MovieViewCell.self), bundle: nil),

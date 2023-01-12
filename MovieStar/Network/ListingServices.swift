@@ -8,24 +8,24 @@
 import Foundation
 import UIKit
 struct ListingServices {
-   
+    
     private let network = Network()
-
-   func getAllMovies(page: Int, completion: @escaping (Result <AllMovies, NetworkError>) -> Void ) {
-       if let urlString: URL = Link.endpointMaker(endpoint: .list, movieID: nil, page: page, search: nil, idOfPerson: nil) {
-           var urlRequest = URLRequest(url: urlString)
-           urlRequest.httpMethod = "GET"
-           network.performRequest(request: urlRequest, completion: completion)
-      }
+    
+    func getAllMovies(page: Int, completion: @escaping (Result <AllMovies, NetworkError>) -> Void ) {
+        if let urlString: URL = Link.endpointMaker(endpoint: .list, movieID: nil, page: page, search: nil, idOfPerson: nil) {
+            var urlRequest = URLRequest(url: urlString)
+            urlRequest.httpMethod = "GET"
+            network.performRequest(request: urlRequest, completion: completion)
+        }
     }
     
-   func getMovie(idOfMovie: Int, completion: @escaping (Result <MovieDetailModel, NetworkError>) -> Void) {
-       if let urlString: URL = Link.endpointMaker(endpoint: .detail, movieID: idOfMovie, page: nil, search: nil, idOfPerson: nil) {
-           var urlRequest = URLRequest(url: urlString )
-           urlRequest.httpMethod = "GET"
-           network.performRequest(request: urlRequest, completion: completion)
-       }
-       
+    func getMovie(idOfMovie: Int, completion: @escaping (Result <MovieDetailModel, NetworkError>) -> Void) {
+        if let urlString: URL = Link.endpointMaker(endpoint: .detail, movieID: idOfMovie, page: nil, search: nil, idOfPerson: nil) {
+            var urlRequest = URLRequest(url: urlString )
+            urlRequest.httpMethod = "GET"
+            network.performRequest(request: urlRequest, completion: completion)
+        }
+        
         
     }
     func getPerson(idOfMovie: Int, completion: @escaping (Result<CastModel, NetworkError>) -> Void) {
@@ -58,9 +58,15 @@ struct ListingServices {
             urlRequest.httpMethod = "GET"
             network.performRequest(request: urlRequest, completion: completion)
         }
-        
     }
     
+    func getGenreResults(search: String, completion: @escaping (Result<AllMovies, NetworkError>) -> Void) {
+        if let urlString: URL = Link.endpointMaker(endpoint: .genre, movieID: nil, page: nil, search: search, idOfPerson: nil){
+            var urlRequest = URLRequest(url: urlString)
+            urlRequest.httpMethod = "GET"
+            network.performRequest(request: urlRequest, completion: completion)
+        }
+    }
 }
 
 

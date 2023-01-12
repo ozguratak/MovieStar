@@ -10,11 +10,7 @@ import Kingfisher
 
 class MovieViewCell: UITableViewCell {
     let dbmanager = DatabaseManager.init()
-    @IBOutlet weak var rankLabel: UILabel!{
-        didSet{
-            rankLabel.layer.backgroundColor = .init(red: 222.0, green: 255.1, blue: 0.0, alpha: 0.7)
-        }
-    }
+    @IBOutlet weak var rankLabel: UILabel!
     @IBOutlet weak var moviePoster: UIImageView! {
         didSet {
             moviePoster.layer.cornerRadius = 10
@@ -32,7 +28,12 @@ class MovieViewCell: UITableViewCell {
             rankLabel.text = StringKey.notRanked
         }
         titleLabel.text = movie.title?.localized()
-        releaseDate.text = movie.release_date?.localized()
+        if let release = movie.release_date{
+            releaseDate.text = StringKey.releaseDate + release.localized()
+        } else {
+            releaseDate.text = StringKey.unknownRelease.localized()
+        }
+        
         let posterPathURL = URL(string: Link.poster + "\(movie.poster_path ?? "")")
         moviePoster.kf.setImage(with: posterPathURL)
         if dbmanager.checkStatus(movieID: movie.id ?? 0) == true{

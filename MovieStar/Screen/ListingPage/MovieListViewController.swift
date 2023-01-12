@@ -25,6 +25,7 @@ class MovieListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = StringKey.listPageHeader
         Skeleton.startAnimation(outlet: self.tableView)
         NotificationCenter.default.addObserver(self, selector: #selector(reload) , name: Notification.Name("FavoritePage"), object: nil)
         listing(page: page)

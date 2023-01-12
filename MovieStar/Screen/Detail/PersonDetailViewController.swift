@@ -26,11 +26,7 @@ class PersonDetailViewController: UIViewController {
     var idOfPerson: Int?
     private let listingservices = ListingServices()
     private let error = ErrorController.self
-    private var person: PersonModel?{
-        didSet {
-            updateUI()
-        }
-    }
+    private var person: PersonModel?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,10 +37,12 @@ class PersonDetailViewController: UIViewController {
                 switch result{
                 case .success(let newPerson):
                     self.person = newPerson
+                   
                     Skeleton.stopAnimationArray(outlets: self.collectionOfView)
                 case .failure(let error):
                     print(error)
                 }
+                self.updateUI()
             }
         } else {
             error.alert(alertInfo: StringKey.noPerson, page: self)

@@ -26,6 +26,8 @@ class FavoriteViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        title = StringKey.favoritesPageHeader
         NotificationCenter.default.addObserver(self, selector: #selector(updateList) , name: Notification.Name("FavoritePage"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(updateList) , name: Notification.Name("ReloadEnd"), object: nil)
         updateList()

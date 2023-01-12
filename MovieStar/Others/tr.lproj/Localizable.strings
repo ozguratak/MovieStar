@@ -5,7 +5,29 @@
   Created by obss on 4.07.2022.
   
 */
+"English" = "İngilizce";
+"Turkish" = "Türkçe";
+"Chinese" = "Çince";
+"Japanese" = "Japonca";
+"Korean" = "Korece";
+"Arabic" = "Arapça";
+"Portuguese" = "Portekizce";
+"Hindi" = "Hintçe";
+"Bengali" = "Bengalce";
+"Russian" = "Rusça";
+"German" = "Almanca";
+"French" = "Fransızca";
+"Spanish" = "İspanyolca";
+"Italian" = "İtalyanca";
 
+"Genres" = "Kategoriler";
+"Recommended Movies" = "Öneriler";
+"Cast" = "Oyuncular";
+"Production Companies" = "Yapımcılar";
+"Movie Information" = "Film Hakkında";
+"Movie List" = "Filmler";
+"Search" = "Arama";
+"Favorites" = "Favoriler";
 "Error" = "Hata!";
 "OK" = "Tamam";
 "Search" = "Ara";

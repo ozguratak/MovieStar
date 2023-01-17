@@ -7,7 +7,9 @@
 
 import Foundation
 struct StringKey{
-    static let notFound = "Not found any content for: ".localized()
+    static let trailerHeader = "Trailer".localized()
+    static let trailer = "%20trailer".localized()
+    static let notFound = "Not found any content about your searching text, You can try another search type or text.".localized()
     static let infoTitle = "Movie Information".localized()
     static let prodTitle = "Production Companies".localized()
     static let castTitle = "Cast".localized()

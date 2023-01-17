@@ -5,6 +5,8 @@
   Created by obss on 4.07.2022.
   
 */
+"Trailer" = "Fragman";
+"%20trailer" = "%20fragman";
 "English" = "İngilizce";
 "Turkish" = "Türkçe";
 "Chinese" = "Çince";
@@ -19,10 +21,10 @@
 "French" = "Fransızca";
 "Spanish" = "İspanyolca";
 "Italian" = "İtalyanca";
-"Not found any content for: " = "Arama sonucu bulunamadı. Arama kelimesi: ";
+"Not found any content about your searching text, You can try another search type or text." = "Yapılan arama için bir sonuç bulunmadı, arama metnini veya arama seçeneğini değiştirmeyi deneyin.";
 "Unknown date" = "Tarih bilinmiyor";
 "Genres" = "Kategoriler";
-"Recommended Movies" = "Öneriler";
+"Recommended Movies" = "Önerilen filmler";
 "Cast" = "Oyuncular";
 "Production Companies" = "Yapımcılar";
 "Movie Information" = "Film Hakkında";

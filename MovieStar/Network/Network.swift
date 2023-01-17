@@ -32,6 +32,7 @@ struct Network {
     }
 }
 
+
 enum NetworkError: Error {
     case decodingError
     case sessionError

@@ -12,12 +12,21 @@ class MovieListViewController: UIViewController {
     @IBOutlet weak var loadingActivityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var tableView: UITableView! {
         didSet { //tableview yüklendiğinde;
+            
             tableView.delegate = self
             tableView.dataSource = self
             tableView.register(UINib(nibName: String(describing: MovieViewCell.self), bundle: nil),
                                forCellReuseIdentifier: String(describing: MovieViewCell.self)) //benim tanımaldığım hücre yapısını register et.
         }
     }
+    
+    @IBOutlet weak var header: UILabel!{
+        didSet{
+            header.text = StringKey.listPageHeader
+        }
+    }
+    
+  
     private let listingService = ListingServices()
     var movies: [MovieModel] = []
     var newPageContent: [MovieModel] = []
@@ -25,7 +34,6 @@ class MovieListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = StringKey.listPageHeader
         Skeleton.startAnimation(outlet: self.tableView)
         NotificationCenter.default.addObserver(self, selector: #selector(reload) , name: Notification.Name("FavoritePage"), object: nil)
         listing(page: page)
@@ -38,7 +46,10 @@ class MovieListViewController: UIViewController {
     @objc func reload(){
         self.tableView.reloadData()
     }
+ 
 }
+
+
 //MARK: - TableView Control
 extension MovieListViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

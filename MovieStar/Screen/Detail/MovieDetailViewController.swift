@@ -9,10 +9,13 @@ import UIKit
 import Foundation
 import Kingfisher
 import SkeletonView
+import WebKit
 
 class MovieDetailViewController: UIViewController {
-     
-    @IBOutlet weak var movieImage: UIImageView!
+    
+    
+    
+    @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var originalTitleLanguage: UILabel!
     @IBOutlet weak var releaseDateRuntime: UILabel!
     @IBOutlet weak var budgetRevenue: UILabel!
@@ -21,12 +24,25 @@ class MovieDetailViewController: UIViewController {
     @IBOutlet weak var runtime: UILabel!
     @IBOutlet weak var revenue: UILabel!
     @IBOutlet weak var buttonState: UIButton!
+    @IBOutlet weak var trailerVideo: UIView!
     @IBOutlet weak var homepagebutton: UIButton!{
         didSet{
-            homepagebutton.setImage(UIImage(systemName: "link"), for: .normal)
+            homepagebutton.setImage(UIImage(systemName: "network"), for: .normal)
             homepagebutton.titleLabel?.isHidden = true
         }
     }
+    @IBOutlet weak var prodCompHeader: UILabel!{
+        didSet{
+            prodCompHeader.text = StringKey.prodTitle
+        }
+    }
+    
+    @IBOutlet weak var trailerTitle: UILabel!{
+        didSet{
+            trailerTitle.text = StringKey.trailerHeader
+        }
+    }
+    
     @IBOutlet weak var castCollectionView: UICollectionView! {
         didSet {
             castCollectionView.dataSource = self
@@ -66,7 +82,7 @@ class MovieDetailViewController: UIViewController {
             let layout = UICollectionViewFlowLayout()
             layout.scrollDirection = .vertical
             
-           
+            
         }
     }
     @IBOutlet var collectionOfView: Array<UIView> = []
@@ -75,13 +91,13 @@ class MovieDetailViewController: UIViewController {
         didSet{
             
             prodCompTitle.text = StringKey.prodTitle
-           
+            
         }
     }
     @IBOutlet weak var genresTitle: UILabel!{
         didSet{
             genresTitle.text = StringKey.genreTitle
-  
+            
         }
     }
     @IBOutlet weak var infoTitle: UILabel!{
@@ -93,17 +109,20 @@ class MovieDetailViewController: UIViewController {
         didSet{
             
             castTitle.text = StringKey.castTitle
-         
+            
         }
     }
     @IBOutlet weak var recomTitle: UILabel!{
         didSet{
             
             recomTitle.text = StringKey.recomTitle
-          
+            
         }
     }
     private let label = UILabel()
+    private var webPlayer: WKWebView!
+    private var webConfiguration = WKWebViewConfiguration()
+    private var trailerLink: URL?
     private let dbmanager = DatabaseManager.shared
     private let error = ErrorController.self
     private let listingService = ListingServices()
@@ -113,16 +132,18 @@ class MovieDetailViewController: UIViewController {
     private var genresList: [GenresModel] = []
     private var prodList: [ProductionCompModel] = []
     private var favMovie: FavoritedMovie?
+    private var movieTrailer: YoutubeModel?
     private var movie: MovieDetailModel? {
         didSet {
-           
+            
             title = movie?.title
         }
     }
-   
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        webConfiguration.allowsInlineMediaPlayback = true
         favoriteCheck()
         if let id = idOfMovie {  //dışarıdan aldığım veriye göre işlem yap veri liste ekranından geliyor. gelen veri formatı Int?
             
@@ -134,6 +155,7 @@ class MovieDetailViewController: UIViewController {
                     self.genresCollectionView.reloadData()
                     self.prodList = newMovie.production_companies ?? []
                     self.prodCompCollectionView.reloadData()
+                    
                     Skeleton.stopAnimationArray(outlets: self.collectionOfView)
                     self.updateUI()
                 case .failure(let error):
@@ -161,72 +183,89 @@ class MovieDetailViewController: UIViewController {
                 }
             }
             
+            
         } else { // id verisi gelmedi ekrana hata bastım
             error.alert(alertInfo: StringKey.noMovie, page: self)
         }
         //sayfa içerikleri skeleton başlat
         
         Skeleton.startAnimationArray(outlets: collectionOfView)
-       
+        
     }
     
- 
-
+    override func viewDidAppear(_ animated: Bool) {
+        if let movieName = movie?.original_title?.replaceSpaces() {
+            
+            Skeleton.startAnimation(outlet: trailerVideo)
+            listingService.getYoutubeVideoID(search: movieName) { result in
+                switch result {
+                case .success(let result):
+                    let id = result.items[0].id.videoId
+                    let url = Link.endpointMaker(endpoint: .watch, movieID: nil, page: nil, search: nil, idOfPerson: nil, videoID: id)
+                    self.trailerLink = url
+                    print(url)
+                    self.player()
+                case .failure(let error):
+                    print(error)
+                }
+            }
+        }
+    }
     //MARK: - Film detayı içeriği setleme, içeriklerin optionaldan çıkartılması hata fırlatma
     func updateUI() {
         
         if let imagePosterPath = movie?.backdrop_path{
-            movieImage.kf.setImage(with: URL(string: Link.poster + imagePosterPath))
+            imageView.kf.setImage(with: URL(string: Link.poster + imagePosterPath))
         } else {
-            movieImage.image = UIImage(named: "404-Image")
+            imageView.image = UIImage(named: "404-Image")
         }
         
         if let overView = movie?.overview {
             if !overView.isEmpty {
-                overview.text = "\(StringKey.overview) \(overView)"
+                overview.text = StringKey.overview + overView
                 
             } else {
-                overview.text = StringKey.noOverview
+                overview.text = StringKey.overview + StringKey.noOverview
             }
         } else {
-            return overview.text! = StringKey.noOverview
+            return overview.text = StringKey.overview + StringKey.noOverview
         }
         
         if let orgLang = movie?.original_language {
             if !orgLang.isEmpty{
                 OrgLanguage.text = StringKey.orgLang + getLanguage(code: orgLang)
             } else {
-                OrgLanguage.text = StringKey.unLanguage
+                OrgLanguage.text = StringKey.orgLang + StringKey.unLanguage
             }
         } else {
-            return OrgLanguage.text = StringKey.unLanguage
+            return OrgLanguage.text = StringKey.orgLang + StringKey.unLanguage
         }
         
         if let orgTitle = movie?.original_title {    //switch case e girecek
             if !orgTitle.isEmpty{
-                originalTitleLanguage.text = StringKey.orgTitle + "\(orgTitle)"
+                originalTitleLanguage.text = StringKey.orgTitle + orgTitle
             } else {
-                originalTitleLanguage.text = StringKey.unTitle
+                originalTitleLanguage.text = StringKey.orgTitle + StringKey.unTitle
             }
         }else{
-            return originalTitleLanguage.text = StringKey.unTitle
+            return originalTitleLanguage.text = StringKey.orgTitle + StringKey.unTitle
         }
         
         if let release = movie?.release_date {
             if !release.isEmpty{
-                releaseDateRuntime.text = StringKey.releaseDate + "\(release)"
+                releaseDateRuntime.text = StringKey.releaseDate + release
             } else {
-                releaseDateRuntime.text = StringKey.unRelease
+                releaseDateRuntime.text = StringKey.releaseDate + StringKey.unRelease
             }
         } else {
-            return releaseDateRuntime.text = StringKey.unRelease
+            return releaseDateRuntime.text = StringKey.releaseDate + StringKey.unRelease
         }
         
         if let budget = movie?.budget {
             if budget >= (1) {
                 let curRency = String(describing: budget).toCurrencyFormat()
                 if !curRency.isEmpty {
-                    budgetRevenue.text = StringKey.budget  + "\(curRency)"
+                    budgetRevenue.text = StringKey.budget  + curRency
                 } else {
                     budgetRevenue.text = StringKey.budget + StringKey.unValue
                 }
@@ -234,14 +273,14 @@ class MovieDetailViewController: UIViewController {
                 budgetRevenue.text = StringKey.budget + StringKey.unValue
             }
         } else {
-            return budgetRevenue.text = StringKey.unBudget
+            return budgetRevenue.text = StringKey.budget + StringKey.unBudget
         }
         
         if let revEnue = movie?.revenue {
             if revEnue > 0 {
                 let currency = String(describing: revEnue).toCurrencyFormat()
                 if !currency.isEmpty{
-                    revenue.text = StringKey.revenue + "\(currency)"
+                    revenue.text = StringKey.revenue + currency
                 } else {
                     revenue.text = StringKey.revenue + StringKey.unValue
                 }
@@ -250,21 +289,19 @@ class MovieDetailViewController: UIViewController {
             }
             
         } else {
-            return revenue.text = StringKey.unRevenue
+            return revenue.text = StringKey.revenue + StringKey.unRevenue
         }
         
         if let runTime = movie?.runtime {
             if !runTime.words.isEmpty {
                 runtime.text = StringKey.runtime + "\(runTime)" + StringKey.minute
             } else {
-                runtime.text = StringKey.unRuntime
+                runtime.text = StringKey.runtime + StringKey.unRuntime
             }
-
+            
         } else {
-            return runtime.text = StringKey.unRuntime
+            return runtime.text = StringKey.runtime + StringKey.unRuntime
         }
-       
-        
     }
     
     //MARK: - Homepage buton aktivitesi
@@ -311,11 +348,25 @@ class MovieDetailViewController: UIViewController {
         
     }
 }
+
+//MARK: - trailerImage için video-resim dönüşümü ve oynatma aksiyonu
+extension MovieDetailViewController{
+    func player() {
+               DispatchQueue.main.async {
+                   self.webPlayer = WKWebView(frame: self.trailerVideo.bounds, configuration: self.webConfiguration)
+                   self.trailerVideo.addSubview(self.webPlayer)
+                   guard let videoURL = self.trailerLink else { return }
+                   let request: URLRequest = URLRequest(url: videoURL)
+                   self.webPlayer.load(request)
+    }
+ }
+}
 //MARK: - Cast & Recom Collection view controllers
 extension MovieDetailViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDelegate, SkeletonCollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         switch collectionView {
+            
         case self.castCollectionView:
             let cellCast = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: CastCell.self),
                                                               for: indexPath) as! CastCell

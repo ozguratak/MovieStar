@@ -16,12 +16,18 @@ class RecomCell: UICollectionViewCell {
     }
     @IBOutlet weak var movieRank: UILabel! {
         didSet {
+            if self.traitCollection.userInterfaceStyle == .dark {
+                movieRank.textColor = .black
+            } else {
+                movieRank.textColor = .black
+            }
             movieRank.layer.backgroundColor = .init(red: 222.0, green: 255.1, blue: 0.0, alpha: 0.7)
             movieRank.layer.cornerRadius = 5
         }
     }
     @IBOutlet weak var movieName: UILabel!
     func configure(movie: MovieModel) {
+        
         movieName.text = movie.title
         movieRank.text = "IMDB: \(String(format: "%.1f", movie.vote_average!))"
         

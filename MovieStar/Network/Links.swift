@@ -14,29 +14,41 @@ struct EndpointList{
     static let recommend = "/recommendations"
     static let personDetail = "3/person/"
     static let cast = "/movie_credits"
-    static let search = "3/search/movie"
+    static let searchWithMovieName = "3/search/movie"
+    static let searchWithPerson = "3/search/person"
     static let page = "&page="
     static let query = "&query="
     static let genre = "&with_genres="
     static let discover = "3/discover/movie"
+    
 }
+struct Youtube {
+    static let apikey = ""
+    static let baseLink = "https://www.googleapis.com/youtube/v3/"
+    static let search = "search?part=snippet&q="
+    static let watchLink = "https://www.youtube.com/embed/"
+    static let autoPlay = "?playsinline=1&autoplay=1"
+}
+
 struct Link {
     private static let language = "&language=\(Locale.current.languageCode!)"
     private static let base = "https://api.themoviedb.org/"
-    private static let api = "?api_key=0c8be20e0f5be9d2bd79558265fc47c0"
+    private static let api = ""
     static let poster = "https://image.tmdb.org/t/p/w500"
     private static let endpoints = EndpointList.self
     
     
-    static func endpointMaker(endpoint: Endpoints, movieID: Int?, page: Int?, search: String?, idOfPerson: Int?) -> URL? {
+    static func endpointMaker(endpoint: Endpoints, movieID: Int?, page: Int?, search: String?, idOfPerson: Int?, videoID: String?) -> URL? {
         var makedURL: URL? = URL(string: "")
         switch endpoint {
         case .list:
             makedURL = URL(string: Link.base + endpoints.list + Link.api + Link.language + endpoints.page + "\(page ?? 0)")
         case .detail:
             makedURL = URL(string: Link.base + endpoints.detail + "\(movieID ?? 0)" + Link.api + Link.language)
-        case .searching:
-            makedURL = URL(string: Link.base + endpoints.search + Link.api + endpoints.query + "\(search ?? "")")
+        case .searchWithMovie:
+            makedURL = URL(string: Link.base + endpoints.searchWithMovieName + Link.api + endpoints.query + "\(search ?? "")")
+        case .searchWithPerson:
+            makedURL = URL(string: Link.base + endpoints.searchWithPerson + Link.api + endpoints.query + "\(search ?? "")")
         case .personDetail:
             makedURL = URL(string: Link.base + endpoints.personDetail + "\(idOfPerson ?? 0)" + Link.api + Link.language)
         case .recommend:
@@ -45,6 +57,10 @@ struct Link {
             makedURL = URL(string: Link.base + endpoints.detail + "\(movieID ?? 0)" + endpoints.credits + Link.api)
         case .genre:
             makedURL = URL(string: Link.base + endpoints.discover + Link.api + endpoints.genre + "\(search ?? "")")
+        case .youtube:
+            makedURL = URL(string: Youtube.baseLink + Youtube.search + "\(search ?? "")" + StringKey.trailer + Youtube.apikey)
+        case .watch:
+            makedURL = URL(string: Youtube.watchLink + "\(videoID ?? "")" + Youtube.autoPlay)
         default:
             print("endpointmaker error")
         }
@@ -60,9 +76,12 @@ enum Endpoints{
     case recommend
     case personDetail
     case cast
-    case searching
+    case searchWithMovie
+    case searchWithPerson
     case query
     case genre
+    case youtube
+    case watch
 }
 
 

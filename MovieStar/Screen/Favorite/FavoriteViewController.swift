@@ -17,6 +17,11 @@ class FavoriteViewController: UIViewController {
     private let refreshControl = UIRefreshControl()
     let link = Link()
     
+    @IBOutlet weak var header: UILabel!{
+        didSet{
+            header.text = StringKey.favoritesPageHeader
+        }
+    }
     @IBOutlet weak var messageLabel: UILabel! {
         didSet {
             messageLabel.text = StringKey.favoriteEmpty

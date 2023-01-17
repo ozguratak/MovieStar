@@ -27,6 +27,14 @@
 		6F917EA5296D81EB004F999A /* GenreListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F917EA4296D81EB004F999A /* GenreListViewController.swift */; };
 		6F92F05D286649A9005ACCFA /* LabelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F92F05B286649A9005ACCFA /* LabelCell.swift */; };
 		6F92F05E286649A9005ACCFA /* LabelCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6F92F05C286649A9005ACCFA /* LabelCell.xib */; };
+		6FAAC83E297535860068C797 /* YoutubeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FAAC83D297535860068C797 /* YoutubeModel.swift */; };
+		6FAAC84529758F7D0068C797 /* ImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FAAC84329758F7D0068C797 /* ImageCell.swift */; };
+		6FAAC84629758F7D0068C797 /* ImageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6FAAC84429758F7D0068C797 /* ImageCell.xib */; };
+		6FAAC84929768AAA0068C797 /* Launch.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FAAC84829768AAA0068C797 /* Launch.png */; };
+		6FAAC84B2976B61A0068C797 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FAAC84A2976B61A0068C797 /* WebKit.framework */; };
+		6FAAC84D2976D14B0068C797 /* SearchControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FAAC84C2976D14B0068C797 /* SearchControl.swift */; };
+		6FAAC8502976D5AA0068C797 /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FAAC84E2976D5AA0068C797 /* CategoryCell.swift */; };
+		6FAAC8512976D5AA0068C797 /* CategoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6FAAC84F2976D5AA0068C797 /* CategoryCell.xib */; };
 		6FADB41F296FEB4B0062D209 /* Languages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FADB41E296FEB4B0062D209 /* Languages.swift */; };
 		6FADB423297049030062D209 /* UI Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FADB422297049030062D209 /* UI Extensions.swift */; };
 		6FB9CEDE2848B97B00D507D6 /* MovieListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB9CEDC2848B97B00D507D6 /* MovieListViewController.swift */; };
@@ -75,6 +83,14 @@
 		6F917EA4296D81EB004F999A /* GenreListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreListViewController.swift; sourceTree = "<group>"; };
 		6F92F05B286649A9005ACCFA /* LabelCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelCell.swift; sourceTree = "<group>"; };
 		6F92F05C286649A9005ACCFA /* LabelCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LabelCell.xib; sourceTree = "<group>"; };
+		6FAAC83D297535860068C797 /* YoutubeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YoutubeModel.swift; sourceTree = "<group>"; };
+		6FAAC84329758F7D0068C797 /* ImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCell.swift; sourceTree = "<group>"; };
+		6FAAC84429758F7D0068C797 /* ImageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageCell.xib; sourceTree = "<group>"; };
+		6FAAC84829768AAA0068C797 /* Launch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Launch.png; sourceTree = "<group>"; };
+		6FAAC84A2976B61A0068C797 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		6FAAC84C2976D14B0068C797 /* SearchControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchControl.swift; sourceTree = "<group>"; };
+		6FAAC84E2976D5AA0068C797 /* CategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
+		6FAAC84F2976D5AA0068C797 /* CategoryCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoryCell.xib; sourceTree = "<group>"; };
 		6FADB41E296FEB4B0062D209 /* Languages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Languages.swift; sourceTree = "<group>"; };
 		6FADB422297049030062D209 /* UI Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UI Extensions.swift"; sourceTree = "<group>"; };
 		6FB9CEDC2848B97B00D507D6 /* MovieListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieListViewController.swift; sourceTree = "<group>"; };
@@ -107,6 +123,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6FAAC84B2976B61A0068C797 /* WebKit.framework in Frameworks */,
 				6F368C9A296C29C7000858A6 /* Kingfisher in Frameworks */,
 				2DAC3C7D9B3E1720F8B0A0B5 /* Pods_MovieStar.framework in Frameworks */,
 			);
@@ -118,6 +135,7 @@
 		0E72EB030CA06345635FE4BF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6FAAC84A2976B61A0068C797 /* WebKit.framework */,
 				C12C0597B9515743E8BCD1F5 /* Pods_MovieStar.framework */,
 			);
 			name = Frameworks;
@@ -126,6 +144,7 @@
 		6F09139E28476F2500B8C8CA /* MovieServices */ = {
 			isa = PBXGroup;
 			children = (
+				6FAAC83D297535860068C797 /* YoutubeModel.swift */,
 				6F84CCB6284603A800F0EA46 /* MovieModel.swift */,
 				6FCE4774284AAC11001065C1 /* AllMovies.swift */,
 				6FCE4776284E007E001065C1 /* MovieDetailModel.swift */,
@@ -206,6 +225,7 @@
 		6F8C9EE0286993FC00E1AAB5 /* Others */ = {
 			isa = PBXGroup;
 			children = (
+				6FAAC84729768A750068C797 /* ImageSets */,
 				6F3941012872DD1300751B2F /* Localizable.strings */,
 				6F84CC9D2846033A00F0EA46 /* SceneDelegate.swift */,
 				6F84CC9B2846033A00F0EA46 /* AppDelegate.swift */,
@@ -218,9 +238,19 @@
 			path = Others;
 			sourceTree = "<group>";
 		};
+		6FAAC84729768A750068C797 /* ImageSets */ = {
+			isa = PBXGroup;
+			children = (
+				6FAAC84829768AAA0068C797 /* Launch.png */,
+			);
+			path = ImageSets;
+			sourceTree = "<group>";
+		};
 		6FB9CED42848AA7A00D507D6 /* CellView */ = {
 			isa = PBXGroup;
 			children = (
+				6FAAC84429758F7D0068C797 /* ImageCell.xib */,
+				6FAAC84F2976D5AA0068C797 /* CategoryCell.xib */,
 				6FB9CEF02848C8D500D507D6 /* MovieViewCell.xib */,
 				6FE612E128660F1300115555 /* RecomCell.xib */,
 				6FE612E52866116A00115555 /* CastCell.xib */,
@@ -231,6 +261,8 @@
 				6FE612E028660F1300115555 /* RecomCell.swift */,
 				6FE612E42866116A00115555 /* CastCell.swift */,
 				6F92F05B286649A9005ACCFA /* LabelCell.swift */,
+				6FAAC84329758F7D0068C797 /* ImageCell.swift */,
+				6FAAC84E2976D5AA0068C797 /* CategoryCell.swift */,
 			);
 			path = CellView;
 			sourceTree = "<group>";
@@ -248,6 +280,7 @@
 			isa = PBXGroup;
 			children = (
 				6FB9CEEA2848BDD200D507D6 /* SearchViewController.swift */,
+				6FAAC84C2976D14B0068C797 /* SearchControl.swift */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -369,8 +402,11 @@
 				6F84CCAB2846033C00F0EA46 /* LaunchScreen.storyboard in Resources */,
 				6F84CCA82846033C00F0EA46 /* Assets.xcassets in Resources */,
 				6F7D8399287705FF00EC04C2 /* Main.storyboard in Resources */,
+				6FAAC84929768AAA0068C797 /* Launch.png in Resources */,
 				6FB9CEF22848C8D500D507D6 /* MovieViewCell.xib in Resources */,
 				6FE612E72866116A00115555 /* CastCell.xib in Resources */,
+				6FAAC84629758F7D0068C797 /* ImageCell.xib in Resources */,
+				6FAAC8512976D5AA0068C797 /* CategoryCell.xib in Resources */,
 				6F3940FF2872DD1300751B2F /* Localizable.strings in Resources */,
 				6F92F05E286649A9005ACCFA /* LabelCell.xib in Resources */,
 			);
@@ -427,9 +463,11 @@
 			files = (
 				6FADB423297049030062D209 /* UI Extensions.swift in Sources */,
 				6FCE477D2850A4AA001065C1 /* WebpageViewerViewController.swift in Sources */,
+				6FAAC8502976D5AA0068C797 /* CategoryCell.swift in Sources */,
 				6FADB41F296FEB4B0062D209 /* Languages.swift in Sources */,
 				6FB9CEEB2848BDD200D507D6 /* SearchViewController.swift in Sources */,
 				6FCE477B284E171A001065C1 /* RecomModel.swift in Sources */,
+				6FAAC84D2976D14B0068C797 /* SearchControl.swift in Sources */,
 				6F0913A028476F4A00B8C8CA /* ListingServices.swift in Sources */,
 				6F32DA802859CAE100287AA5 /* Cast.swift in Sources */,
 				6F0913A228476FA400B8C8CA /* Network.swift in Sources */,
@@ -442,6 +480,7 @@
 				6FB9CEF12848C8D500D507D6 /* MovieViewCell.swift in Sources */,
 				6FE612E228660F1300115555 /* RecomCell.swift in Sources */,
 				6FCE47852851EABD001065C1 /* FavoritedMovie.swift in Sources */,
+				6FAAC83E297535860068C797 /* YoutubeModel.swift in Sources */,
 				6F86EE1E287458FF0068BBFD /* String Keys.swift in Sources */,
 				6F84CC9C2846033A00F0EA46 /* AppDelegate.swift in Sources */,
 				6F84CC9E2846033A00F0EA46 /* SceneDelegate.swift in Sources */,
@@ -452,6 +491,7 @@
 				6FE612DB2864A79A00115555 /* SkeletonController.swift in Sources */,
 				6F917EA5296D81EB004F999A /* GenreListViewController.swift in Sources */,
 				6FCE4799285350B5001065C1 /* DatabaseManager.swift in Sources */,
+				6FAAC84529758F7D0068C797 /* ImageCell.swift in Sources */,
 				6FCE479528523CE2001065C1 /* FavoriteViewController.swift in Sources */,
 				6FCE47A628570867001065C1 /* ErrorController.swift in Sources */,
 				6F0913A42847702600B8C8CA /* Links.swift in Sources */,
@@ -616,7 +656,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = XB692L8VYQ;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MovieStar/Info.plist;
@@ -632,7 +672,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.1;
+				MARKETING_VERSION = 1.1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ozgurobss.MovieStar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -653,7 +693,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = XB692L8VYQ;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MovieStar/Info.plist;
@@ -669,7 +709,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.1;
+				MARKETING_VERSION = 1.1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ozgurobss.MovieStar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

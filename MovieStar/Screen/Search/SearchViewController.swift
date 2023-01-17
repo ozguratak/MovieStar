@@ -10,6 +10,11 @@ import UIKit
 class SearchViewController: UIViewController {
     
     
+    @IBOutlet weak var header: UILabel!{
+        didSet{
+            header.text = StringKey.searchPageHeader
+        }
+    }
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var messageLabel: UILabel! {
@@ -17,6 +22,8 @@ class SearchViewController: UIViewController {
             messageLabel.text = StringKey.searchMessage
         }
     }
+    var searchingType: String = ""
+    private var searchingText: String = ""
     private var searchResults: [MovieModel] = []
     private let listingService = ListingServices()
     private let searchController = UISearchController()
@@ -25,7 +32,6 @@ class SearchViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = StringKey.searchPageHeader
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(UINib(nibName: String(describing: MovieViewCell.self), bundle: nil),
@@ -61,35 +67,31 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource{
             }
         }
     }
-
 }
 
 //MARK: -Listing Functions
 extension SearchViewController {
-    func replaceSpaces(string: String) -> String {
-        return string.replacingOccurrences(of: " ", with: "%20")
-    }
-    
-    func searchItem(text: String) {
-        listingService.getSearchResults(search: text) { result in
-            switch result {
-            case .success(let response):
-                self.searchResults = response.results ?? []
-                if self.searchResults.count >= 1 {
-                    self.tableView.reloadData()
-                } else {
-                    ErrorController.alert(alertInfo: "\(StringKey.notFound) \(text)" , page: self)
+        func searchItem(text: String) {
+            listingService.getSearchResults(search: text) { result in
+                switch result {
+                case .success(let response):
+                    self.searchResults = response.results ?? []
+                    if self.searchResults.count >= 1 {
+                        self.tableView.reloadData()
+                    } else {
+                        ErrorController.alert(alertInfo: "\(StringKey.notFound) \(self.searchingText)" , page: self)
+                    }
+                    
+                    if self.searchResults.count > 0 {
+                    Skeleton.stopAnimaton(outlet: self.tableView)
+                    }
+                case .failure(let error):
+                    print(error)
                 }
-                
-                if self.searchResults.count > 0 {
-                Skeleton.stopAnimaton(outlet: self.tableView)
-                }
-            case .failure(let error):
-                print(error)
             }
         }
     }
-}
+
 //MARK: - Searchbar controllers
 extension SearchViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
@@ -103,13 +105,14 @@ extension SearchViewController: UISearchBarDelegate {
         }
         
         let correctedText = characterCheck(text: searchText)
+        self.searchingText = searchText
         
         let bottomOffset = CGPoint(x: 0, y: 0)
         tableView.setContentOffset(bottomOffset, animated: true)
         if searchText.count >= 1{
             Skeleton.hideMessage(parentView: tableView, childView: messageLabel, state: false)
             Skeleton.startAnimation(outlet: tableView)
-            searchItem(text: replaceSpaces(string: correctedText))
+            searchItem(text: correctedText.replaceSpaces())
         } else {
             Skeleton.stopAnimaton(outlet: tableView)
         }

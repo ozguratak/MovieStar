@@ -9,6 +9,9 @@ import Foundation
 import UIKit
 
 extension String{
+    func replaceSpaces() -> String {
+            return replacingOccurrences(of: " ", with: "%20")
+    }
     
     var urlEncoded: String? {
         let allowedCharacterSet = CharacterSet.alphanumerics.union(CharacterSet(charactersIn: "~-_."))
@@ -26,6 +29,7 @@ extension String{
     func localized() -> String {
         return NSLocalizedString(self, tableName: "Localizable", bundle: .main, value: self, comment: self)
     }
+    
     
    
     

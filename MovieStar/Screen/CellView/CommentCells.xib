@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="125" id="KGk-i7-Jjw" customClass="CommentCells" customModule="MovieStar" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="566" height="125"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="566" height="125"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Jhon S." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jGN-dP-efr">
+                        <rect key="frame" x="8" y="8" width="61" height="24"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="24" id="ww2-gK-D4K"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Comment Lorem Ipsum dolor sit amet" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bl1-be-5MW">
+                        <rect key="frame" x="20" y="40" width="538" height="77"/>
+                        <fontDescription key="fontDescription" type="italicSystem" pointSize="13"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Jhon S." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XeT-CB-sDe">
+                        <rect key="frame" x="93" y="8" width="56.666666666666657" height="24"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="24" id="KMc-Eq-LuZ"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="italicSystem" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="XeT-CB-sDe" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="06I-iH-8gl"/>
+                    <constraint firstItem="XeT-CB-sDe" firstAttribute="leading" secondItem="jGN-dP-efr" secondAttribute="trailing" constant="24" id="SbV-LH-W1L"/>
+                    <constraint firstItem="jGN-dP-efr" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="UJX-7t-5DI"/>
+                    <constraint firstItem="bl1-be-5MW" firstAttribute="top" secondItem="jGN-dP-efr" secondAttribute="bottom" constant="8" symbolic="YES" id="c8V-CO-EP2"/>
+                    <constraint firstAttribute="trailing" secondItem="bl1-be-5MW" secondAttribute="trailing" constant="8" id="cu5-T9-rEd"/>
+                    <constraint firstItem="bl1-be-5MW" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" symbolic="YES" id="dgB-TR-yBI"/>
+                    <constraint firstItem="jGN-dP-efr" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="nKQ-Lv-ZNC"/>
+                    <constraint firstAttribute="bottom" secondItem="bl1-be-5MW" secondAttribute="bottom" constant="8" id="nyH-Be-MZ8"/>
+                    <constraint firstItem="bl1-be-5MW" firstAttribute="top" secondItem="XeT-CB-sDe" secondAttribute="bottom" constant="8" symbolic="YES" id="tel-nP-aqX"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="commentLabel" destination="bl1-be-5MW" id="r7Q-ug-VOj"/>
+                <outlet property="dateLabel" destination="XeT-CB-sDe" id="kQh-1N-vZx"/>
+                <outlet property="userNameLabel" destination="jGN-dP-efr" id="rBt-oP-hqE"/>
+            </connections>
+            <point key="canvasLocation" x="317.55725190839695" y="16.549295774647888"/>
+        </tableViewCell>
+    </objects>
+</document>

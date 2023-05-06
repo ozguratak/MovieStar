@@ -4,19 +4,18 @@
 // 
 //  Created by obss on 2.06.2022.
 //
-//MARK: - Listeleme sayfası; uygulamanın ana sayfası olarak tasarlanmış olan bu sayfada API içerisinden pagination kullanılarak veriler çekilmekte ve kullanıcıya gösterilmektedir. 
+//
 import UIKit
 
 class MovieListViewController: UIViewController {
     
     @IBOutlet weak var loadingActivityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var tableView: UITableView! {
-        didSet { //tableview yüklendiğinde;
-            
+        didSet {
             tableView.delegate = self
             tableView.dataSource = self
             tableView.register(UINib(nibName: String(describing: MovieViewCell.self), bundle: nil),
-                               forCellReuseIdentifier: String(describing: MovieViewCell.self)) //benim tanımaldığım hücre yapısını register et.
+                               forCellReuseIdentifier: String(describing: MovieViewCell.self))
         }
     }
     
@@ -37,12 +36,19 @@ class MovieListViewController: UIViewController {
         Skeleton.startAnimation(outlet: self.tableView)
         NotificationCenter.default.addObserver(self, selector: #selector(reload) , name: Notification.Name("FavoritePage"), object: nil)
         listing(page: page)
-        
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        navigationItem.setHidesBackButton(true, animated: true)
+        self.tabBarController?.navigationItem.hidesBackButton = true
         self.tableView.reloadData()
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        reload()
+    }
+    
     @objc func reload(){
         self.tableView.reloadData()
     }
@@ -82,12 +88,16 @@ extension MovieListViewController: UITableViewDelegate, UITableViewDataSource {
 extension MovieListViewController {
     
     func listing(page: Int){
+        loadingActivityIndicator.isHidden = false
+        loadingActivityIndicator.startAnimating()
         listingService.getAllMovies(page: page) { result in
             switch result {
             case .success(let response):
                 self.movies = response.results ?? []
                 self.tableView.reloadData()
                 Skeleton.stopAnimaton(outlet: self.tableView)
+                self.loadingActivityIndicator.stopAnimating()
+                self.loadingActivityIndicator.isHidden = true
             case .failure(let error):
                 print(error)
             }

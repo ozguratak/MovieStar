@@ -13,8 +13,6 @@ import WebKit
 
 class MovieDetailViewController: UIViewController {
     
-    
-    
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var originalTitleLanguage: UILabel!
     @IBOutlet weak var releaseDateRuntime: UILabel!
@@ -119,6 +117,8 @@ class MovieDetailViewController: UIViewController {
             
         }
     }
+    
+    
     private let label = UILabel()
     private var webPlayer: WKWebView!
     private var webConfiguration = WKWebViewConfiguration()
@@ -203,10 +203,11 @@ class MovieDetailViewController: UIViewController {
                     let id = result.items[0].id.videoId
                     let url = Link.endpointMaker(endpoint: .watch, movieID: nil, page: nil, search: nil, idOfPerson: nil, videoID: id)
                     self.trailerLink = url
-                    print(url)
                     self.player()
                 case .failure(let error):
-                    print(error)
+                    DispatchQueue.main.async {
+                        ErrorController.alert(alertInfo: String(describing: error), page: self)
+                    }
                 }
             }
         }
@@ -311,6 +312,15 @@ class MovieDetailViewController: UIViewController {
             self.navigationController?.pushViewController(webpageVC, animated: true)
         }
     }
+    
+    @available(iOS 15, *)
+    @IBAction func commentButtonPressed(_ sender: UIButton) {
+        if let commentVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: String(describing: CommentsViewController.self)) as? CommentsViewController {
+            commentVC.idOfMovie = idOfMovie
+            self.navigationController?.pushViewController(commentVC, animated: true)
+        }
+    }
+    
     //MARK: - Gösterim için favori durumu kontrol ve gösterme
     func favoriteCheck() {
         if let idOfMovie = idOfMovie {

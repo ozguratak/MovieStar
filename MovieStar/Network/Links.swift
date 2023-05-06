@@ -23,7 +23,7 @@ struct EndpointList{
     
 }
 struct Youtube {
-    static let apikey = ""
+    static let apikey = "&key=AIzaSyAOtY3xPR3X6avT2YlWyIB3cX6wbiQ1hC8"
     static let baseLink = "https://www.googleapis.com/youtube/v3/"
     static let search = "search?part=snippet&q="
     static let watchLink = "https://www.youtube.com/embed/"
@@ -33,7 +33,7 @@ struct Youtube {
 struct Link {
     private static let language = "&language=\(Locale.current.languageCode!)"
     private static let base = "https://api.themoviedb.org/"
-    private static let api = ""
+    private static let api = "?api_key=0c8be20e0f5be9d2bd79558265fc47c0"
     static let poster = "https://image.tmdb.org/t/p/w500"
     private static let endpoints = EndpointList.self
     
@@ -64,6 +64,7 @@ struct Link {
         default:
             print("endpointmaker error")
         }
+        print(makedURL)
         return makedURL
     }
 }
